@@ -25,9 +25,20 @@ int hangmanVisual() {
     return 0;
 }
 
+int gameplay() {
+    // Player has 7 tries to complete the game.
+    int triesLeft = 6;
+    while (triesLeft > 0) {
+        hangmanVisual();
+        int triesleft = triesLeft--;
+        std::cout << triesLeft;
+    }
+    return 0;
+}
+
 int main() {
     std::cout << "Welcome to Hangman!" << std::endl;
     hangmanVisual();
-    
+    gameplay();
 }
 
