@@ -61,6 +61,7 @@ int gameplay() {
         std::cout << "\nTry a letter: " << std::endl;
         std::cin >> userGuess; // Ask for input from player
 
+        // Reveal correct guesses from hidden word
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (word[i] == userGuess) {
                 hiddenWord[i] = userGuess;
@@ -68,6 +69,7 @@ int gameplay() {
             }
         }
 
+        // Ends game if word is correctlyy guessed
         if (word == hiddenWord) {
             std::cout << "\nCongratulations! You won the game!" << std::endl;
             break; // Close the game once finished
