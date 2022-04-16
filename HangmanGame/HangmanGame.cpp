@@ -111,8 +111,8 @@ int gameplay() {
         std::cout << "|   " << hangmanLeftLeg << " " << hangmanRightLeg << " " << std::endl;
         std::cout << "|         " << std::endl;
         std::cout << "|_________" << std::endl;
-        std::cout << "\nNo tries left. Game over!";
-        std::cout << "The answer is " << word << std::endl;
+        std::cout << "\nNo tries left. Game over!" << std::endl;
+        std::cout << "The answer is " << word << "." << std::endl;
     }
     return 0;
 }
