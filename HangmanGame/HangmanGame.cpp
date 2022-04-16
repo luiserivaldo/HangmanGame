@@ -3,8 +3,32 @@
 
 #include <iostream>
 #include <fstream>
+#include <ctime>
+#include <string>
 
 int gameplay() {
+    // Create word list 
+    std::string word; // Word selected for the game
+    std::string wordList[799]; // Array to store word list
+
+    // Read word list file and create word list array
+    srand(time(NULL)); // Create random seed
+    std::ifstream randomWord; // Reads the word list as a variable
+    randomWord.open("words.txt"); // Opens the word list from "words.txt"
+    for (int i = 0; i < 799; i++) {
+        randomWord >> wordList[i];
+    }
+
+    // Select random word
+    int randNum = rand() % 800; // Generate a random number used for the word selection
+    word = wordList[randNum]; // Selects a random word from the array
+
+    randomWord.close(); // Stop reading the word file
+
+    // Display number of characters in the word (word is hidden to the player)
+    std::string hiddenWord(word.length(), '-');
+    std::cout << hiddenWord << std::endl;
+
     // Empty Hangman Visual constructor.
     char hangmanHead = ' ';
     char hangmanLeftArm = ' ';
