@@ -27,9 +27,8 @@ int gameplay() {
 
     // Display number of characters in the word (word is hidden to the player)
     std::string hiddenWord(word.length(), '-');
-    std::cout << hiddenWord << std::endl;
 
-    // Empty Hangman Visual constructor.
+    // Variables for empty Hangman Visual.
     char hangmanHead = ' ';
     char hangmanLeftArm = ' ';
     char hangmanUpperBody = ' ';
@@ -38,10 +37,14 @@ int gameplay() {
     char hangmanLeftLeg = ' ';
     char hangmanRightLeg = ' ';
 
-    // Number of tries the player has.
-    int triesLeft = 7;
+    int triesLeft = 7; // Number of tries the player has.
+    char userGuess; // Variable to store user input.
+    bool guessIsCorrect = false;
 
-    while (triesLeft > 0) {
+    while (triesLeft > 0) { // Loops gameplay if player still has multiple tries left
+        guessIsCorrect = false; // Reset the guess value while in the loop
+
+        // Hangman Visual constructor
         std::cout << " _________" << std::endl;
         std::cout << "|    |    " << std::endl;
         std::cout << "|    " << hangmanHead << "   " << std::endl;
@@ -50,9 +53,30 @@ int gameplay() {
         std::cout << "|   " << hangmanLeftLeg << " " << hangmanRightLeg << " " << std::endl;
         std::cout << "|         " << std::endl;
         std::cout << "|_________" << std::endl;
-        std::cout << "\nYou have " << triesLeft << " tries left!" << std::endl;
+        std::cout << std::endl;
 
-        int triesleft = triesLeft--;
+        // std::cout << word; // TESTING: The correct word for the game
+        std::cout << "\nGuess the word: " << hiddenWord << std::endl;
+        std::cout << "\nYou have " << triesLeft << " tries left!" << std::endl;
+        std::cout << "\nTry a letter: " << std::endl;
+        std::cin >> userGuess; // Ask for input from player
+
+        for (int i = 0; i < hiddenWord.length(); i++) {
+            if (word[i] == userGuess) {
+                hiddenWord[i] = userGuess;
+                guessIsCorrect = true;
+            }
+        }
+
+        if (word == hiddenWord) {
+            std::cout << "\nCongratulations! You won the game!" << std::endl;
+            break; // Close the game once finished
+        }
+
+        if (guessIsCorrect == false){
+            std::cout << "\nThe letter is wrong. Please try again." << std::endl;
+            int triesleft = triesLeft--; // Reduce user attempt by 1 for every failed guess
+        }
 
         // Change Hangman visual depending on tries left.
         if (triesLeft <= 6) {
