@@ -5,6 +5,7 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <vector>
 
 int gameplay() {
     // Create word list 
@@ -61,6 +62,13 @@ int gameplay() {
         std::cout << "\nTry a letter: " << std::endl;
         std::cin >> userGuess; // Ask for input from player
 
+        // TESTING: store previous guesses into a vector
+        // std::vector<char> triedGuesses;
+        // for (char i : triedGuesses) {
+        //    triedGuesses.push_back(userGuess);
+        //    std::cout << i << ' ';
+        // }
+
         // Reveal correct guesses from hidden word
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (word[i] == userGuess) {
@@ -72,6 +80,7 @@ int gameplay() {
         // Ends game if word is correctlyy guessed
         if (word == hiddenWord) {
             std::cout << "\nCongratulations! You won the game!" << std::endl;
+            std::cout << "\nThe answer is " << word << "." << std::endl;
             break; // Close the game once finished
         }
 
