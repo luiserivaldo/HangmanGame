@@ -46,6 +46,7 @@ int gameplay() {
     int triesLeft = 7; // Number of tries the player has.
     char userGuess; // Variable to store user input.
     bool guessIsCorrect = false;
+    std::vector<char> triedGuesses{};
 
     while (triesLeft > 0) { // Loops gameplay if player still has multiple tries left
         guessIsCorrect = false; // Reset the guess value while in the loop
@@ -67,13 +68,6 @@ int gameplay() {
         std::cout << "\nTry a letter: " << std::endl;
         std::cin >> userGuess; // Ask for input from player
 
-        // TESTING: store previous guesses into a vector
-        // std::vector<char> triedGuesses;
-        // for (char i : triedGuesses) {
-        //    triedGuesses.push_back(userGuess);
-        //    std::cout << i << ' ';
-        // }
-
         // Reveal correct guesses from hidden word
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (word[i] == userGuess) {
@@ -91,6 +85,15 @@ int gameplay() {
 
         if (guessIsCorrect == false){
             std::cout << "\nThe letter is wrong. Please try again." << std::endl;
+            // Store previous guesses into a vector
+            if (userGuess != NULL) { // Run loop if input has valid value
+                triedGuesses.push_back(userGuess); // Appends the input value to the vector
+                std::cout << "\nYou have tried: ";
+                for (char i : triedGuesses) { // Reads each chart in previous guesses vector
+                    std::cout << i << ' '; // Prints out every value stored in the vector
+                }
+                std::cout << std::endl;
+            }
             int triesleft = triesLeft--; // Reduce user attempt by 1 for every failed guess
         }
 
