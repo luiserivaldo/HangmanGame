@@ -16,6 +16,11 @@ int gameplay() {
     srand(time(NULL)); // Create random seed
     std::ifstream randomWord; // Reads the word list as a variable
     randomWord.open("words.txt"); // Opens the word list from "words.txt"
+
+    // Checks if file is present
+    if (!randomWord) {
+        std::cout << "Missing file." << std::endl;
+    }
     for (int i = 0; i < 799; i++) {
         randomWord >> wordList[i];
     }
