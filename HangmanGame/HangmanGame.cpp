@@ -68,6 +68,16 @@ int gameplay() {
         std::cout << "\nTry a letter: " << std::endl;
         std::cin >> userGuess; // Ask for input from player
 
+        // Store previous guesses into a vector
+        if (userGuess != NULL) { // Run loop if input has valid value
+            triedGuesses.push_back(userGuess); // Appends the input value to the vector
+            std::cout << "\nYou have tried: ";
+            for (char i : triedGuesses) { // Reads each chart in previous guesses vector
+                std::cout << i << ' '; // Prints out every value stored in the vector
+            }
+            std::cout << std::endl;
+        }
+
         // Reveal correct guesses from hidden word
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (word[i] == userGuess) {
@@ -85,15 +95,6 @@ int gameplay() {
 
         if (guessIsCorrect == false){
             std::cout << "\nThe letter is wrong. Please try again." << std::endl;
-            // Store previous guesses into a vector
-            if (userGuess != NULL) { // Run loop if input has valid value
-                triedGuesses.push_back(userGuess); // Appends the input value to the vector
-                std::cout << "\nYou have tried: ";
-                for (char i : triedGuesses) { // Reads each chart in previous guesses vector
-                    std::cout << i << ' '; // Prints out every value stored in the vector
-                }
-                std::cout << std::endl;
-            }
             int triesleft = triesLeft--; // Reduce user attempt by 1 for every failed guess
         }
 
